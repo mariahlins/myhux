@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+void swap(double *n1,double *n2){
+    double aux=*n1;
+    *n1=*n2;
+    *n2=aux;
+}
+
+void maior(double a,double b,double c,double d){
+    if(a>b) swap(&a,&b);
+    if(a>c) swap(&a,&c);
+    if(a>d) swap(&a,&d);
+    if(b>c) swap(&b,&c);
+    if(b>d) swap(&b,&d);
+    if(c>d) swap(&c,&d);
+    printf("%.2lf\n%.2lf\n%.2lf\n%.2lf\n",a,c,d,b);
+}
+
+int main(){
+    double a,b,c,d;
+    scanf("%lf %lf %lf %lf",&a,&b,&c,&d);
+    maior(a,b,c,d);
+}
