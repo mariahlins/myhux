@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int meta(int dia,int contp,int contl,int maior,int maiorl){
+    int qprog,qlinha;
+    if(dia>0){
+        scanf("%d %d",&qprog,&qlinha);
+        if(qprog>=5){
+            contp++;
+        }
+        if(qlinha>=100){
+            contl++;
+        }
+        maior=maiorR(qprog,qlinha,dia,&maiorl);
+        return meta(dia-1,contp,contl,maior, maiorl);
+    }
+    printf("QUANTIDADE DE DIAS QUE ATINGIU MEDIA DE PROGRAMAS: %d\n",contp);
+    printf("QUANTIDADE DE DIAS QUE ATINGIU MEDIA DE LINHAS: %d\n",contl);
+    printf("DIA QUE MAIS PRODUZIU: ");
+    if(maior==7) printf("DOMINGO");
+    else if(maior==6) printf("SEGUNDA");
+    else if(maior==5) printf("TERCA");
+    else if(maior==4) printf("QUARTA");
+    else if(maior==3) printf("QUINTA");
+    else if(maior==2) printf("SEXTA");
+    else if(maior==1) printf("SABADO");
+    
+}
+
+int maiorR(int qprog,int qlinha,int dia,int *maiorl){
+    int x=qlinha;
+    if(x>=*maiorl){
+        *maiorl=x;
+        return dia;
+    }
+}
+
+
+int main() {
+    int contp,contl,maior;
+    meta(7,contp,contl,0,-2147483646);
+}
