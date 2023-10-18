@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int buscazero(int arr[],int arr2[],int i,int n,int tocas){
+    if(i==n){
+        verify(arr,arr2,n,n,tocas);
+    }else{
+        if(arr2[i]==0){
+            verify(arr,arr2,i,n,tocas);
+        }else{
+            buscazero(arr,arr2,i+1,n,tocas);
+        }
+    }
+}
+
+int verify(int arr[],int arr2[],int i,int n,int tocas){
+    if(i==n){
+        printf("%d\n",tocas);
+    }else{
+        if(arr2[i]!=1){
+            arr2[i]=1;
+            i=arr[i];
+            verify(arr,arr2,i,n,tocas);
+        }else{
+            tocas++;
+            buscazero(arr,arr2,0,n,tocas);
+        }
+    }
+}
+
+int scan(int arr[],int arr2[],int i,int n){
+    if(i==n){
+        verify(arr,arr2,0,n,0);
+    }else{
+        scanf("%d",&arr[i]);
+        arr2[i] = 0;
+        return scan(arr,arr2,i+1,n);
+    }
+}
+
+int main() {
+    int n;
+    scanf("%d",&n);
+    int arr[n],arr2[n];
+    scan(arr,arr2,0,n);
+	return 0;
+}
