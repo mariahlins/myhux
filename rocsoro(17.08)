@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int jogo(int pp,int pa,int ph,int *pe,int *an,int *hu,int *emp){
+    int novo;
+    if((ph+pa+pp)%2==0){
+        pp=(pp/10)+(pp%10);
+        pa=(pa/10)+(pa%10);
+        ph=(ph/10)+(ph%10);
+        novo=(pp*ph*pa);
+    }else{
+        novo=(ph*pp*pa)/2;
+    }
+    int resto=novo%10;
+        if(resto==1 || resto==2 || resto==3){
+            (*pe)+=novo;
+        }else if(resto==4 || resto==5 || resto==6){
+            (*an)+=novo;
+        }else if(resto==7 || resto==8 || resto==9){
+            (*hu)+=novo;
+        }else{
+            (*emp)++;
+        }
+}
+
+int scan(int n,int ct,int pe,int an,int hu,int emp){
+    int pp,pa,ph;
+    if(ct<n){
+        scanf("%d %d %d",&pp,&pa,&ph);
+        jogo(pp,pa,ph,&pe,&an,&hu,&emp);
+        return scan(n,ct+1,pe,an,hu,emp);
+    }else{
+        printf("Pontuacao Pedro: %d\nPontuacao Anderson: %d\nPontuacao Hugo: %d\nEmpates: %d\n",pe,an,hu,emp);
+        if(pe>an && pe>hu){
+            printf("Pedro ganhou");
+        }else if(an>pe && an>hu){
+            printf("Anderson ganhou");
+        }else if(hu>pe && hu>an){
+            printf("Hugo ganhou");
+        }
+    }
+}
+int main() {
+    int n;
+    scanf("%d",&n);
+    scan(n,0,0,0,0,0);
+	return 0;
+}
