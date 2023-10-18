@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int scan(int n,int ct,int cy,int ck){
+    int ny,nk;
+    if(ct<n){
+        scanf("%d %d",&ny,&nk);
+        if(ny==0){
+            if(nk==1 || nk==2){
+                cy++;
+            }else{
+                ck++;
+            }
+        }else if(ny==1){
+            if(nk==3 || nk==2){
+                cy++;
+            }else{
+                ck++;
+            }
+        }else if(ny==2){
+            if(nk==3 || nk==4){
+                cy++;
+            }else{
+                ck++;
+            }
+        }else if(ny==3){
+            if(nk==0 || nk==4){
+                cy++;
+            }else{
+                ck++;
+            }
+        }else if(ny==4){
+            if(nk==0 || nk==1){
+                cy++;
+            }else{
+                ck++;
+            }
+        }
+        return scan(n,ct+1,cy,ck);
+    }else{
+        if(cy>ck){
+            printf("Kaio foi o perdedor.");
+        }else{
+            printf("Yuri foi o perdedor.");
+        }
+    }
+}
+
+int main() {
+    int n;
+    scanf("%d",&n);
+    scan(n,0,0,0);
+	return 0;
+}
