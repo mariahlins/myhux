@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int inverter(char arry[],int tam,int i){
+    if(i>=tam){
+        return 0;
+    }
+    char aux=arry[i];
+    arry[i]=arry[tam];
+    arry[tam]=aux;
+    return inverter(arry,tam-1,i+1);
+}
+
+int comprimento(char arry[]){
+    if(arry[0] == '\0'){
+        return 0;
+    }else{
+        return 1 + comprimento(arry+1);
+    }
+}
+
+int main() {
+    int arry[256];
+    scanf("%s",&arry);
+    int comp=comprimento(arry);
+    inverter(arry,comp-1,0);
+    printf("%s",arry);
+	return 0;
+}
