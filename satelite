@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+void procuraPosicao(int quant,char **mat, int *linha,int *coluna,int *quadrante){
+    for(int i=0;i<quant;i++){
+        for(int j=0;j<quant;j++){
+            if(mat[i][j]=='*'){
+                *linha=i;
+                *coluna=j;
+                return;
+            }
+        }
+    }
+}
+
+int main() {
+    int quant, posicaoL=0, posicaoC=0,quadrante=0;
+    char **mat;
+    scanf("%d", &quant);
+
+    mat=malloc(quant*sizeof(char*));
+    for (int n=0;n<quant;n++){
+        mat[n]=malloc(quant*sizeof(char));
+    }
+    
+    for(int i=0;i<(quant);i++){
+        for(int j=0;j<(quant);j++){
+            scanf(" %c", &mat[i][j]);
+        }
+    }
+    
+    procuraPosicao(quant,mat,&posicaoL,&posicaoC,&quadrante);
+    while(quant>=2){
+        if(posicaoL<quant/2){
+            if(posicaoC>=quant/2) quadrante=1;
+            else quadrante=2;
+        }else{
+            if(posicaoC<quant/2) quadrante=3;
+            else quadrante=4;
+        }
+        
+        printf("%d",quadrante);
+        quant/=2;
+        
+        if(quadrante==1){
+            posicaoC-=quant;
+        }else if(quadrante==3){
+            posicaoL-=quant/2;
+        }else if(quadrante==4){
+            posicaoL-=quant;
+            posicaoC-=quant;
+        }
+        
+    }
+    printf("0");
+    for(int n=0;n<quant*2;n++){
+        free(mat[n]);
+    }
+    free(mat);
+        
+    return 0;
+}
