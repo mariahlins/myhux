@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int confere(int tamanho,char *digitos,int i,int soma,int pos){
+    if(i<0){
+        return soma;
+    }else{
+        if(digitos[i]%2==0 && digitos[i]!=0){
+            soma+=(digitos[i]*2*pos);
+        }else if(digitos[i]%2==1 && digitos[i]!=0){
+            soma+=(digitos[i]*3*pos);
+        }
+        return confere(tamanho,digitos,i-1,soma,pos+1);
+    }
+}
+
+int main(){
+    char *digitos,numero[9];
+    while(scanf(" %s",numero)!= EOF){
+        if(strcmp(numero,"0")==0){
+            break;
+        }   
+        int tamanho=strlen(numero);
+        digitos=malloc(tamanho*sizeof(char));
+        for(int i=0;i<tamanho;i++){
+            digitos[i]=numero[i]-'0';
+        }
+        int resultado=confere(tamanho,digitos,tamanho-1,0,1);
+        printf("%d\n",resultado);
+        free(digitos);
+    }
+	return 0;
+}
