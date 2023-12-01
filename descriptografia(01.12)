@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main(){
+    char strOrig[99];
+    gets(strOrig);
+    int strTam=strlen(strOrig),contfinal=0;
+    for(int i=0;i<strTam;i++){
+        if(strOrig[i]=='*'){
+            printf("(%d",i+1);
+            contfinal++;
+        }else{
+            printf("%d",i+1);
+        }
+    }
+    if(contfinal>0){
+        for(int n=0;n<contfinal;n++){
+            printf(")");
+        }
+    }
+    return 0;
+}
