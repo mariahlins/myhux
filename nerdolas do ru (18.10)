@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+void confere(int valor[10],char entrada1,char entrada2,int *ponto){
+    if(entrada1=='a') *ponto+=valor[0];
+    else if(entrada1=='b') *ponto+=valor[1];
+    else if(entrada1=='c') *ponto+=valor[2];
+    else if(entrada1=='d') *ponto+=valor[3];
+    else if(entrada1=='e') *ponto+=valor[4];
+    
+    if(entrada2=='i') *ponto=(*ponto)*valor[5];
+    else if(entrada2=='j') *ponto=(*ponto)*valor[6];
+    else if(entrada2=='k') *ponto=(*ponto)*valor[7];
+    else if(entrada2=='l') *ponto=(*ponto)*valor[8];
+    else if(entrada2=='m') *ponto=(*ponto)*valor[9];
+    *ponto=(*ponto)%100;
+}
+
+int main(){
+    char ryan1,ryan2,filipe1,filipe2,ruan1,ruan2,heron1,heron2;
+    int valor[10];
+    int pryan=0,pruan=0,pfilipe=0,pheron=0;
+    scanf("%c %c %c %c %c %c %c %c",&ryan1,&filipe1,&ruan1,&heron1,&ryan2,&filipe2,&ruan2,&heron2);
+    for(int i=0;i<10;i++){
+        scanf("%d",&valor[i]);
+    }
+    
+    confere(valor,ryan1,ryan2,&pryan);
+    confere(valor,filipe1,filipe2,&pfilipe);
+    confere(valor,ruan1,ruan2,&pruan);
+    confere(valor,heron1,heron2,&pheron);
+    
+    if(pryan>pfilipe && pryan>pruan && pryan>pheron){
+        printf("Ryan %d - Vencedor\n",pryan);
+    }else if(pfilipe>pryan && pfilipe>pruan && pfilipe>pheron){
+        printf("Filipe %d - Vencedor\n",pfilipe);
+    }else if(pruan>pfilipe && pruan>pryan && pruan>pheron){
+        printf("Ruan %d - Vencedor\n",pruan);
+    }else if(pheron>pfilipe && pheron>pruan && pheron>pryan){
+        printf("Heron %d - Vencedor\n",pheron);
+    }
+    
+    if(pryan<pfilipe && pryan<pruan && pryan<pheron){
+        printf("Ryan %d - Perdedor\n",pryan);
+    }else if(pfilipe<pryan && pfilipe<pruan && pfilipe<pheron){
+        printf("Filipe %d - Perdedor\n",pfilipe);
+    }else if(pruan<pfilipe && pruan<pryan && pruan<pheron){
+        printf("Ruan %d - Perdedor\n",pruan);
+    }else if(pheron<pfilipe && pheron<pruan && pheron<pryan){
+        printf("Heron %d - Perdedor\n",pheron);
+    }
+
+    return 0;
+}
